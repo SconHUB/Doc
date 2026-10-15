@@ -1,0 +1,16 @@
+Retratos NÃO baixados — acesso de rede bloqueado.
+
+Data: 2026-10-15
+Comando de teste:
+  curl -sS -o /dev/null -w '%{http_code}' -A 'ConselhoAtemporal/1.0 (sconmidia@gmail.com)' https://en.wikipedia.org/api/rest_v1/page/summary/Plato
+Resultado:
+  curl: (56) CONNECT tunnel failed, response 403
+  (o mesmo ocorre com commons.wikimedia.org: connect_rejected pelo proxy de saída)
+
+Causa: a política de rede do ambiente cloud não permite os hosts da Wikimedia.
+Para resolver: nas configurações do ambiente (menu do ambiente cloud > Edit > Network access),
+adicione em "Allowed domains": en.wikipedia.org, commons.wikimedia.org, upload.wikimedia.org
+(ou use um nível de acesso mais amplo) e rode a tarefa novamente.
+Docs: https://code.claude.com/docs/en/cloud-environments#network-access
+
+Nenhuma imagem ou crédito foi inventado.
